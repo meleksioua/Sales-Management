@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Categories" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Sale_Management.Contact" %>
+﻿<%@ Page Title="Categories" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Categories.aspx.cs" Inherits="Sale_Management.Categories" %>
  
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -98,6 +98,16 @@
             <asp:Button runat="server" ID="btn_Add" CssClass="addbtn" Text="ADD" OnClick="Add_Click" Width="110px" />
             <asp:Button runat="server" ID="btn_delete" Text="DELETE" class="cnbtn" OnClick="Delete_Click" Width="110px" />
         </div>
+     <asp:GridView ID="GridView1" runat="server" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                             <asp:CheckBox ID="chk" runat="server" OnCheckedChanged="chk_CheckedChange" AutoPostBack="True" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+
         <div id="AddFrom" class="addForm">
             <table class="auto-style1">
                 

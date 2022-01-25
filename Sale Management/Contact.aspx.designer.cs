@@ -33,6 +33,15 @@ namespace Sale_Management
         protected global::System.Web.UI.WebControls.Button btn_delete;
 
         /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
         /// lib_name control.
         /// </summary>
         /// <remarks>
