@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GestionVente" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SIOUA-PC;Initial Catalog=GestionVente;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GestionVenteConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categorie" Member="Categories">
+    <Type Name="Categorie">
+      <Column Name="Id_categorie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Libelle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Categorie_Produit" Member="Produits" ThisKey="Id_categorie" OtherKey="Id_categorie" Type="Produit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Client" Member="Clients">
+    <Type Name="Client">
+      <Column Name="Id_Client" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prenom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Client_Commande" Member="Commandes" ThisKey="Id_Client" OtherKey="Id_client" Type="Commande" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commande" Member="Commandes">
+    <Type Name="Commande">
+      <Column Name="Id_commande" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Id_client" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Commande_Vente" Member="Ventes" ThisKey="Id_commande" OtherKey="Id_commande" Type="Vente" />
+      <Association Name="Client_Commande" Member="Client" ThisKey="Id_client" OtherKey="Id_Client" Type="Client" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produit" Member="Produits">
+    <Type Name="Produit">
+      <Column Name="Id_Produit" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Libelle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prix" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Id_categorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Produit_Vente" Member="Ventes" ThisKey="Id_Produit" OtherKey="Id_produit" Type="Vente" />
+      <Association Name="Categorie_Produit" Member="Categorie" ThisKey="Id_categorie" OtherKey="Id_categorie" Type="Categorie" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vente" Member="Ventes">
+    <Type Name="Vente">
+      <Column Name="Id_vente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Mantant" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Qte" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_produit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_commande" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Commande_Vente" Member="Commande" ThisKey="Id_commande" OtherKey="Id_commande" Type="Commande" IsForeignKey="true" />
+      <Association Name="Produit_Vente" Member="Produit" ThisKey="Id_produit" OtherKey="Id_Produit" Type="Produit" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

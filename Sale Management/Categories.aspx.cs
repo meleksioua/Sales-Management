@@ -11,10 +11,17 @@ namespace Sale_Management
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetData();
             HideAddControls();
 
         }
+        private void GetData()
+        {
+            DataClassesDataContext dbContext = new DataClassesDataContext();
 
+            GridView1.DataSource = dbContext.Categories;
+            GridView1.DataBind();
+        }
         private void HideAddControls()
         {
             
@@ -34,6 +41,12 @@ namespace Sale_Management
         protected void Add_Click(object sender, EventArgs e)
         {
             ShowAddControls();
+
+        }
+        protected void Update_Click(object sender, EventArgs e)
+        {
+          
+
 
         }
 
