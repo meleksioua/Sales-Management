@@ -9,16 +9,33 @@ namespace Sale_Management
 {
     public partial class Categories : System.Web.UI.Page
     {
+        public static int IdCategorie { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 GetCategories();
+                HideUpdateControls();
             }
             
 
         }
         DataClassesDataContext db = new DataClassesDataContext();
+
+        private void HideUpdateControls()
+        {
+            btn_submit.Visible = false;
+            btn_reset.Visible = false;
+            btn_insert.Visible = true;
+            txt_libelle.Text = "";
+
+        }
+        private void ShowUpdateControls()
+        {
+            btn_submit.Visible = true;
+            btn_reset.Visible = true;
+            btn_insert.Visible = false;
+        }
         protected void btn_insert_Click(object sender, EventArgs e)
         {
             try
@@ -60,7 +77,7 @@ namespace Sale_Management
 
         }
 
-        public void DeleteCategorie(int Id_Categorie)
+        private void DeleteCategorie(int Id_Categorie)
         {
 
             try
@@ -77,6 +94,55 @@ namespace Sale_Management
             }
 
 
+        }
+
+        protected void LinkButtonEdit_Click(object sender, EventArgs e)
+        {
+
+            var rowIndex = ((GridViewRow)(sender as Control).NamingContainer).RowIndex;
+            var Id = Convert.ToInt32(list_categories.Rows[rowIndex].Cells[1].Text);
+            IdCategorie = Id;
+           
+            EditCategorie(Id);
+            ShowUpdateControls();
+
+
+        }
+
+        private void EditCategorie(int Id_Categorie)
+        {
+            var categorieEdit = (from c in db.Categories where c.Id_categorie == Id_Categorie select c).First();
+            var libelle = categorieEdit.Libelle;
+            txt_libelle.Text = libelle.ToString();
+        }
+
+        protected void btn_submit_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(IdCategorie);
+
+            try
+            {
+                string libelle = txt_libelle.Text;
+                var categorieUpdate = (from c in db.Categories where c.Id_categorie == IdCategorie select c).First();
+                categorieUpdate.Libelle = libelle;
+                db.SubmitChanges();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated');", true);
+                GetCategories();
+                HideUpdateControls();
+                txt_libelle.Text = "";
+                btn_insert.Enabled = true;
+            }
+            catch (Exception ex) {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('" + ex.Message.ToString() + "');", true);
+
+            }
+
+        }
+
+        protected void btn_cancel_Click(object sender, EventArgs e)
+        {
+           
+            HideUpdateControls();
         }
     }
 }

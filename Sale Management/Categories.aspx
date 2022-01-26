@@ -27,6 +27,8 @@
                 <td style="width: 286px">&nbsp;</td>
                 <td>
                     <asp:Button ID="btn_insert" runat="server" BackColor="#333333" Font-Bold="True" Font-Size="Medium" ForeColor="White" Height="40px" OnClick="btn_insert_Click" Text="Insert" Width="120px" />
+                    <asp:Button ID="btn_submit" runat="server" BackColor="#33CC33" Font-Bold="True" Font-Size="Medium" ForeColor="White" Height="40px" OnClick="btn_submit_Click" Text="Submit" Width="120px" />
+                    <asp:Button ID="btn_reset" runat="server" BackColor="Red" Font-Bold="True" Font-Size="Medium" ForeColor="White" Height="40px" OnClick="btn_cancel_Click" Text="Cancel" Width="120px" />
                 </td>
             </tr>
             <tr>
@@ -48,7 +50,8 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="LinkButtonDelete" runat="server" OnClick="LinkButtonDelete_Click">Delete</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButtonDelete" runat="server" OnClick="LinkButtonDelete_Click" BackColor="Red" Font-Bold="True" Font-Size="Medium" ForeColor="White">Delete</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButtonEdit" runat="server" OnClick="LinkButtonEdit_Click" BackColor="Orange" Font-Bold="True" Font-Size="Medium" ForeColor="White">Edit</asp:LinkButton>                    
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
