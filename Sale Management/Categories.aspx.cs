@@ -11,71 +11,38 @@ namespace Sale_Management
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GetData();
-            HideAddControls();
+            GetCategories();
 
         }
-        private void GetData()
+        DataClassesDataContext db = new DataClassesDataContext();
+        protected void btn_insert_Click(object sender, EventArgs e)
         {
-            DataClassesDataContext dbContext = new DataClassesDataContext();
+            try
+            {
+                string libelle = txt_libelle.Text;
+                Categorie categorie = new Categorie()
+                {
+                    Libelle = libelle,
 
-            GridView1.DataSource = dbContext.Categories;
-            GridView1.DataBind();
+                };
+
+                db.Categories.InsertOnSubmit(categorie);
+                db.SubmitChanges();
+                txt_libelle.Text = "";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Inserted');", true);
+                GetCategories();
+            }
+            catch (Exception ex) {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('" + ex.Message.ToString() + "');", true);
+            }
         }
-        private void HideAddControls()
+
+        private void GetCategories()
         {
-            
-            txt_name.Visible = false;
-            lib_name.Visible = false;
-            btn_save.Visible = false;
-            btn_cancel.Visible = false;
+            var categorie = from c in db.Categories select c;
+
+            list_categories.DataSource = categorie;
+            list_categories.DataBind();
         }
-        private void ShowAddControls()
-        {
-            txt_name.Visible = true;
-            lib_name.Visible = true;
-            btn_save.Visible = true;
-            btn_cancel.Visible = true;
-        }
-
-        protected void Add_Click(object sender, EventArgs e)
-        {
-            ShowAddControls();
-
-        }
-        protected void Update_Click(object sender, EventArgs e)
-        {
-          
-
-
-        }
-
-
-
-        protected void Delete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Save_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Cancel_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void chk_CheckedChange(object sender, EventArgs e)
-        {
-
-            var rowIndex = ((GridView)(sender as Control).NamingContainer).SelectedRow;
-            Console.WriteLine(rowIndex.ToString());
-        }
-
     }
 }

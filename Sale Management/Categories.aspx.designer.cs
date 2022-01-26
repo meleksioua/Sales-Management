@@ -15,75 +15,39 @@ namespace Sale_Management
     {
 
         /// <summary>
-        /// btn_Add control.
+        /// lib_libelle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Add;
+        protected global::System.Web.UI.WebControls.Label lib_libelle;
 
         /// <summary>
-        /// btn_Update control.
+        /// txt_libelle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Update;
+        protected global::System.Web.UI.WebControls.TextBox txt_libelle;
 
         /// <summary>
-        /// btn_delete control.
+        /// btn_insert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_delete;
+        protected global::System.Web.UI.WebControls.Button btn_insert;
 
         /// <summary>
-        /// GridView1 control.
+        /// list_categories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
-        /// lib_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lib_name;
-
-        /// <summary>
-        /// txt_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_name;
-
-        /// <summary>
-        /// btn_save control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_save;
-
-        /// <summary>
-        /// btn_cancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancel;
+        protected global::System.Web.UI.WebControls.GridView list_categories;
     }
 }
