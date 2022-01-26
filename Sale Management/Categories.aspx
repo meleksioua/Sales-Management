@@ -45,6 +45,13 @@
             <SortedAscendingHeaderStyle BackColor="#808080" />
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
+            <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="LinkButtonDelete" runat="server" OnClick="LinkButtonDelete_Click">Delete</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
         </asp:GridView>
     </div>
     
