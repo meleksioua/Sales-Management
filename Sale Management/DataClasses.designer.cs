@@ -33,9 +33,6 @@ namespace Sale_Management
     partial void InsertCategorie(Categorie instance);
     partial void UpdateCategorie(Categorie instance);
     partial void DeleteCategorie(Categorie instance);
-    partial void InsertClient(Client instance);
-    partial void UpdateClient(Client instance);
-    partial void DeleteClient(Client instance);
     partial void InsertCommande(Commande instance);
     partial void UpdateCommande(Commande instance);
     partial void DeleteCommande(Commande instance);
@@ -45,6 +42,9 @@ namespace Sale_Management
     partial void InsertProduit(Produit instance);
     partial void UpdateProduit(Produit instance);
     partial void DeleteProduit(Produit instance);
+    partial void InsertClient(Client instance);
+    partial void UpdateClient(Client instance);
+    partial void DeleteClient(Client instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -85,14 +85,6 @@ namespace Sale_Management
 			}
 		}
 		
-		public System.Data.Linq.Table<Client> Clients
-		{
-			get
-			{
-				return this.GetTable<Client>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Commande> Commandes
 		{
 			get
@@ -114,6 +106,14 @@ namespace Sale_Management
 			get
 			{
 				return this.GetTable<Produit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Client> Clients
+		{
+			get
+			{
+				return this.GetTable<Client>();
 			}
 		}
 	}
@@ -229,144 +229,6 @@ namespace Sale_Management
 		{
 			this.SendPropertyChanging();
 			entity.Categorie = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
-	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id_Client;
-		
-		private string _Nom;
-		
-		private string _Prenom;
-		
-		private EntitySet<Commande> _Commandes;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnId_ClientChanging(int value);
-    partial void OnId_ClientChanged();
-    partial void OnNomChanging(string value);
-    partial void OnNomChanged();
-    partial void OnPrenomChanging(string value);
-    partial void OnPrenomChanged();
-    #endregion
-		
-		public Client()
-		{
-			this._Commandes = new EntitySet<Commande>(new Action<Commande>(this.attach_Commandes), new Action<Commande>(this.detach_Commandes));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id_Client
-		{
-			get
-			{
-				return this._Id_Client;
-			}
-			set
-			{
-				if ((this._Id_Client != value))
-				{
-					this.OnId_ClientChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Client = value;
-					this.SendPropertyChanged("Id_Client");
-					this.OnId_ClientChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50)")]
-		public string Nom
-		{
-			get
-			{
-				return this._Nom;
-			}
-			set
-			{
-				if ((this._Nom != value))
-				{
-					this.OnNomChanging(value);
-					this.SendPropertyChanging();
-					this._Nom = value;
-					this.SendPropertyChanged("Nom");
-					this.OnNomChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prenom", DbType="VarChar(50)")]
-		public string Prenom
-		{
-			get
-			{
-				return this._Prenom;
-			}
-			set
-			{
-				if ((this._Prenom != value))
-				{
-					this.OnPrenomChanging(value);
-					this.SendPropertyChanging();
-					this._Prenom = value;
-					this.SendPropertyChanged("Prenom");
-					this.OnPrenomChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Commande", Storage="_Commandes", ThisKey="Id_Client", OtherKey="Id_client")]
-		public EntitySet<Commande> Commandes
-		{
-			get
-			{
-				return this._Commandes;
-			}
-			set
-			{
-				this._Commandes.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Commandes(Commande entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = this;
-		}
-		
-		private void detach_Commandes(Commande entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = null;
 		}
 	}
 	
@@ -1013,6 +875,192 @@ namespace Sale_Management
 		{
 			this.SendPropertyChanging();
 			entity.Produit = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_Client;
+		
+		private string _Nom;
+		
+		private string _Prenom;
+		
+		private string _Sexe;
+		
+		private System.Nullable<int> _Age;
+		
+		private EntitySet<Commande> _Commandes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_ClientChanging(int value);
+    partial void OnId_ClientChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    partial void OnPrenomChanging(string value);
+    partial void OnPrenomChanged();
+    partial void OnSexeChanging(string value);
+    partial void OnSexeChanged();
+    partial void OnAgeChanging(System.Nullable<int> value);
+    partial void OnAgeChanged();
+    #endregion
+		
+		public Client()
+		{
+			this._Commandes = new EntitySet<Commande>(new Action<Commande>(this.attach_Commandes), new Action<Commande>(this.detach_Commandes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Client", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_Client
+		{
+			get
+			{
+				return this._Id_Client;
+			}
+			set
+			{
+				if ((this._Id_Client != value))
+				{
+					this.OnId_ClientChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Client = value;
+					this.SendPropertyChanged("Id_Client");
+					this.OnId_ClientChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50)")]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prenom", DbType="VarChar(50)")]
+		public string Prenom
+		{
+			get
+			{
+				return this._Prenom;
+			}
+			set
+			{
+				if ((this._Prenom != value))
+				{
+					this.OnPrenomChanging(value);
+					this.SendPropertyChanging();
+					this._Prenom = value;
+					this.SendPropertyChanged("Prenom");
+					this.OnPrenomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexe", DbType="VarChar(50)")]
+		public string Sexe
+		{
+			get
+			{
+				return this._Sexe;
+			}
+			set
+			{
+				if ((this._Sexe != value))
+				{
+					this.OnSexeChanging(value);
+					this.SendPropertyChanging();
+					this._Sexe = value;
+					this.SendPropertyChanged("Sexe");
+					this.OnSexeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int")]
+		public System.Nullable<int> Age
+		{
+			get
+			{
+				return this._Age;
+			}
+			set
+			{
+				if ((this._Age != value))
+				{
+					this.OnAgeChanging(value);
+					this.SendPropertyChanging();
+					this._Age = value;
+					this.SendPropertyChanged("Age");
+					this.OnAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Commande", Storage="_Commandes", ThisKey="Id_Client", OtherKey="Id_client")]
+		public EntitySet<Commande> Commandes
+		{
+			get
+			{
+				return this._Commandes;
+			}
+			set
+			{
+				this._Commandes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Commandes(Commande entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = this;
+		}
+		
+		private void detach_Commandes(Commande entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = null;
 		}
 	}
 }

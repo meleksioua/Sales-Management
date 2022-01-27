@@ -7,14 +7,6 @@
       <Association Name="Categorie_Produit" Member="Produits" ThisKey="Id_categorie" OtherKey="Id_categorie" Type="Produit" />
     </Type>
   </Table>
-  <Table Name="dbo.Client" Member="Clients">
-    <Type Name="Client">
-      <Column Name="Id_Client" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Prenom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Client_Commande" Member="Commandes" ThisKey="Id_Client" OtherKey="Id_client" Type="Commande" />
-    </Type>
-  </Table>
   <Table Name="dbo.Commande" Member="Commandes">
     <Type Name="Commande">
       <Column Name="Id_commande" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -44,6 +36,16 @@
       <Column Name="Id_categorie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Produit_Vente" Member="Ventes" ThisKey="Id_Produit" OtherKey="Id_produit" Type="Vente" />
       <Association Name="Categorie_Produit" Member="Categorie" ThisKey="Id_categorie" OtherKey="Id_categorie" Type="Categorie" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Client" Member="Clients">
+    <Type Name="Client">
+      <Column Name="Id_Client" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prenom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Sexe" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Client_Commande" Member="Commandes" ThisKey="Id_Client" OtherKey="Id_client" Type="Commande" />
     </Type>
   </Table>
 </Database>
